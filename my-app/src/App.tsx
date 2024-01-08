@@ -6,13 +6,19 @@ import './App.css';
 import { NavBar } from './NavBarComponent';
 import { EntriesComponent } from './EntriesComponent';
 import { ListOfEntries } from './ListOfEntriesComponent';
+import { NavBarPlain } from './NavBarPlain';
+import { NewEntryBanner } from './NewEntryBanner';
+import { CreateEntryForm } from './CreateEntryFormComponent';
 
 function App() {
   return (
     <>
-      <NavBar />
+      <NavBarPlain />
+      <NewEntryBanner />
+      <CreateEntryForm />
+      {/* <NavBar />
       <EntriesComponent />
-      <ListOfEntries />
+      <ListOfEntries /> */}
     </>
   );
 }
