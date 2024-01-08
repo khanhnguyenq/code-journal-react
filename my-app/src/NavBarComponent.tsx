@@ -1,4 +1,8 @@
-export function NavBar() {
+type NavBarProps = {
+  onClick: () => void;
+};
+
+export function NavBar({ onClick }: NavBarProps) {
   return (
     <header className="header purple-background">
       <div className="container">
@@ -6,7 +10,11 @@ export function NavBar() {
           <div className="column-full d-flex align-center">
             <h1 className="white-text">Code Journal</h1>
             <h3>
-              <a id="entriesLink" className="entries-link white-text" href="#">
+              <a
+                onClick={onClick}
+                id="entriesLink"
+                className="entries-link white-text"
+                href="#">
                 Entries
               </a>
             </h3>

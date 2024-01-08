@@ -9,18 +9,36 @@ import { ListOfEntries } from './ListOfEntriesComponent';
 import { NavBarPlain } from './NavBarPlain';
 import { NewEntryBanner } from './NewEntryBanner';
 import { CreateEntryForm } from './CreateEntryFormComponent';
+import { useState } from 'react';
 
 function App() {
-  return (
+  const [clicked, setClicked] = useState(true);
+
+  return clicked ? (
     <>
-      <NavBarPlain />
+      <NavBar onClick={() => setClicked(!clicked)} />
       <NewEntryBanner />
       <CreateEntryForm />
-      {/* <NavBar />
-      <EntriesComponent />
-      <ListOfEntries /> */}
+    </>
+  ) : (
+    <>
+      <NavBarPlain />
+      <EntriesComponent onClick={() => setClicked(!clicked)} />
+      <ListOfEntries />
     </>
   );
+
+  // return (
+  //   <>
+
+  //     {/* <NavBarPlain />
+  //     <NewEntryBanner />
+  //     <CreateEntryForm /> */}
+  //     <NavBar />
+  //     <EntriesComponent />
+  //     <ListOfEntries />
+  //   </>
+  // );
 }
 
 export default App;
