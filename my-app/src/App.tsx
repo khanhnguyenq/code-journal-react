@@ -18,7 +18,7 @@ function App() {
     <>
       <NavBar onClick={() => setClicked(!clicked)} />
       <NewEntryBanner />
-      <CreateEntryForm />
+      <CreateEntryForm clicked={clicked} setClicked={setClicked} />
     </>
   ) : (
     <>
@@ -27,18 +27,6 @@ function App() {
       <ListOfEntries />
     </>
   );
-
-  // return (
-  //   <>
-
-  //     {/* <NavBarPlain />
-  //     <NewEntryBanner />
-  //     <CreateEntryForm /> */}
-  //     <NavBar />
-  //     <EntriesComponent />
-  //     <ListOfEntries />
-  //   </>
-  // );
 }
 
 export default App;

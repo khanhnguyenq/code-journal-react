@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import placeholder from '/workspaces/code-journal-react/my-app/src/assets/placeholder-image-square.jpg';
-import { UnsavedEntry } from './data';
+import { UnsavedEntry, addEntry } from './data';
 import { FormEvent } from 'react';
-
-export function CreateEntryForm() {
+type CreateEntryFormProps = {
+  clicked: boolean;
+  setClicked: (status: boolean) => void;
+};
+export function CreateEntryForm({ clicked, setClicked }: CreateEntryFormProps) {
   const [title, setTitle] = useState('');
   const [photoUrl, setPhotoUrl] = useState('');
   const [notes, setNotes] = useState('');
@@ -15,7 +18,8 @@ export function CreateEntryForm() {
       notes: notes,
       photoUrl: photoUrl,
     };
-    console.log(data);
+    addEntry(data);
+    setClicked(!clicked);
   }
 
   return (
@@ -25,7 +29,7 @@ export function CreateEntryForm() {
           <img
             className="input-b-radius form-image"
             id="formImage"
-            src={placeholder}
+            src={photoUrl ? photoUrl : placeholder}
             alt="image of entry image"
           />
         </div>
