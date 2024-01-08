@@ -1,5 +1,3 @@
-// FILE IMPORT'S
-
 export function NavBar() {
   return (
     <header className="header purple-background">
