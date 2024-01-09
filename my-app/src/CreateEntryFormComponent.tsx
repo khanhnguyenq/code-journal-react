@@ -3,10 +3,9 @@ import placeholder from '/workspaces/code-journal-react/my-app/src/assets/placeh
 import { UnsavedEntry, addEntry } from './data';
 import { FormEvent } from 'react';
 type CreateEntryFormProps = {
-  clicked: boolean;
-  setClicked: (status: boolean) => void;
+  setClicked: (status: string) => void;
 };
-export function CreateEntryForm({ clicked, setClicked }: CreateEntryFormProps) {
+export function CreateEntryForm({ setClicked }: CreateEntryFormProps) {
   const [title, setTitle] = useState('');
   const [photoUrl, setPhotoUrl] = useState('');
   const [notes, setNotes] = useState('');
@@ -19,7 +18,7 @@ export function CreateEntryForm({ clicked, setClicked }: CreateEntryFormProps) {
       photoUrl: photoUrl,
     };
     addEntry(data);
-    setClicked(!clicked);
+    setClicked('entries');
   }
 
   return (

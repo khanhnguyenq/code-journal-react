@@ -10,22 +10,31 @@ import { NavBarPlain } from './NavBarPlain';
 import { NewEntryBanner } from './NewEntryBanner';
 import { CreateEntryForm } from './CreateEntryFormComponent';
 import { useState } from 'react';
+import { EditingBanner } from './EditingBanner';
 
 function App() {
-  const [clicked, setClicked] = useState(true);
+  const [clicked, setClicked] = useState('entries');
 
-  return clicked ? (
-    <>
-      <NavBar onClick={() => setClicked(!clicked)} />
-      <NewEntryBanner />
-      <CreateEntryForm clicked={clicked} setClicked={setClicked} />
-    </>
-  ) : (
+  return clicked === 'entries' ? (
     <>
       <NavBarPlain />
-      <EntriesComponent onClick={() => setClicked(!clicked)} />
-      <ListOfEntries />
+      <EntriesComponent onClick={() => setClicked('adding')} />
+      <ListOfEntries onEdit={() => setClicked('editing')} />
     </>
+  ) : clicked === 'adding' ? (
+    <>
+      <NavBar onClick={() => setClicked('adding')} />
+      <NewEntryBanner />
+      <CreateEntryForm setClicked={setClicked} />
+    </>
+  ) : clicked === 'editing' ? (
+    <>
+      <NavBarPlain />
+      <EditingBanner />
+      <CreateEntryForm setClicked={setClicked} />
+    </>
+  ) : (
+    <></>
   );
 }
 
