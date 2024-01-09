@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import placeholder from '/workspaces/code-journal-react/my-app/src/assets/placeholder-image-square.jpg';
-import { UnsavedEntry, addEntry } from './data';
+import { Entry, UnsavedEntry, addEntry } from './data';
 import { FormEvent } from 'react';
 type CreateEntryFormProps = {
   setClicked: (status: string) => void;
+  entry?: Entry;
 };
-export function CreateEntryForm({ setClicked }: CreateEntryFormProps) {
-  const [title, setTitle] = useState('');
-  const [photoUrl, setPhotoUrl] = useState('');
-  const [notes, setNotes] = useState('');
+export function CreateEntryForm({ setClicked, entry }: CreateEntryFormProps) {
+  const [title, setTitle] = useState(entry?.title ?? '');
+  const [photoUrl, setPhotoUrl] = useState(entry?.photoUrl ?? '');
+  const [notes, setNotes] = useState(entry?.notes ?? '');
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

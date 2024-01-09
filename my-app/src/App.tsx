@@ -11,15 +11,22 @@ import { NewEntryBanner } from './NewEntryBanner';
 import { CreateEntryForm } from './CreateEntryFormComponent';
 import { useState } from 'react';
 import { EditingBanner } from './EditingBanner';
+import { Entry } from './data';
 
 function App() {
   const [clicked, setClicked] = useState('entries');
+  const [entry, setEntry] = useState<Entry>();
 
   return clicked === 'entries' ? (
     <>
       <NavBarPlain />
       <EntriesComponent onClick={() => setClicked('adding')} />
-      <ListOfEntries onEdit={() => setClicked('editing')} />
+      <ListOfEntries
+        onEdit={(e) => {
+          setClicked('editing');
+          setEntry(e);
+        }}
+      />
     </>
   ) : clicked === 'adding' ? (
     <>
@@ -27,14 +34,12 @@ function App() {
       <NewEntryBanner />
       <CreateEntryForm setClicked={setClicked} />
     </>
-  ) : clicked === 'editing' ? (
+  ) : (
     <>
       <NavBarPlain />
       <EditingBanner />
-      <CreateEntryForm setClicked={setClicked} />
+      <CreateEntryForm setClicked={setClicked} entry={entry} />
     </>
-  ) : (
-    <></>
   );
 }
 

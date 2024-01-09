@@ -1,10 +1,10 @@
-import { readEntries } from './data';
+import { Entry, readEntries } from './data';
 
 type ListOfEntriesProps = {
-  onClick: () => void;
+  onEdit: (i: Entry) => void;
 };
 
-export function ListOfEntries({ onClick }: ListOfEntriesProps) {
+export function ListOfEntries({ onEdit }: ListOfEntriesProps) {
   const data = readEntries();
 
   // deleting the bullet points
@@ -21,7 +21,7 @@ export function ListOfEntries({ onClick }: ListOfEntriesProps) {
               <img src={i.photoUrl} alt={i.notes} />
               <h3>{i.title}</h3>
               <p>{i.notes}</p>
-              <a onClick={onClick}>Edit</a>
+              <a onClick={() => onEdit(i)}>Edit</a>
             </>
           }
         </li>
